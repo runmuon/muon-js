@@ -23,8 +23,8 @@ muon.init("YOUR_PROJECT_ID", "https://analytics.example.com", {
 });
 
 muon.pageView("/pricing", "Pricing");
-muon.track("signup_completed", { plan: "pro" });
-muon.identify("user_123");
+muon.track("checkout_started", { cartValue: 12800, currency: "USD" });
+muon.identify("acct_9f4c2a");
 
 await muon.shutdown();
 ```

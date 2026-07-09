@@ -15,7 +15,7 @@ function makeCore(overrides = {}): MuonCore {
     coreConfig(dir, `${server.url}/api/track/batch`, {
       hostname: 'app.example.com',
       language: 'en-US',
-      release: '1.8.4',
+      release: 'web-2026.07.09',
       ...overrides,
     }),
   );
@@ -37,8 +37,8 @@ afterEach(async () => {
 describe('golden fixture: exact batch body', () => {
   it('custom event matches the contract shape exactly (field names, types, no extras)', async () => {
     const core = makeCore();
-    core.identify('user_123');
-    core.track('signup_done', { plan: 'pro' });
+    core.identify('acct_9f4c2a');
+    core.track('checkout_started', { cartValue: 12800, currency: 'USD' });
     await core.flush();
 
     const batch = server.batches[0]!;
@@ -49,12 +49,12 @@ describe('golden fixture: exact batch body', () => {
       {
         project: 'proj-1',
         type: 'custom',
-        name: 'signup_done',
+        name: 'checkout_started',
         hostname: 'app.example.com',
         language: 'en-US',
-        release: '1.8.4',
-        distinctId: 'user_123',
-        properties: { plan: 'pro' },
+        release: 'web-2026.07.09',
+        distinctId: 'acct_9f4c2a',
+        properties: { cartValue: 12800, currency: 'USD' },
       },
     ]);
   });
@@ -71,7 +71,7 @@ describe('golden fixture: exact batch body', () => {
         title: 'Pricing',
         hostname: 'app.example.com',
         language: 'en-US',
-        release: '1.8.4',
+        release: 'web-2026.07.09',
       },
     ]);
   });
@@ -98,7 +98,7 @@ describe('golden fixture: exact batch body', () => {
       page: '/signup',
       hostname: 'app.example.com',
       language: 'en-US',
-      release: '1.8.4',
+      release: 'web-2026.07.09',
     });
     expect(JSON.stringify(server.batches[0]!.events)).not.toContain('stack');
     expect(JSON.stringify(server.batches[0]!.events)).not.toContain('at ');

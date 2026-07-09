@@ -36,14 +36,14 @@ describe('pre-init safety', () => {
 describe('init', () => {
   it('delivers events end-to-end after init', async () => {
     init('proj-1', server.url, { queueDir: dir });
-    identify('user_123');
-    setRelease('2.0.0');
-    track('signup', { plan: 'pro' });
+    identify('acct_9f4c2a');
+    setRelease('web-2026.07.09');
+    track('checkout_started', { cartValue: 12800, currency: 'USD' });
     pageView('/pricing', 'Pricing');
     await flush();
     const events = server.allEvents();
     expect(events).toHaveLength(2);
-    expect(events[0]).toMatchObject({ project: 'proj-1', type: 'custom', name: 'signup', distinctId: 'user_123', release: '2.0.0' });
+    expect(events[0]).toMatchObject({ project: 'proj-1', type: 'custom', name: 'checkout_started', distinctId: 'acct_9f4c2a', release: 'web-2026.07.09' });
     expect(events[1]).toMatchObject({ type: 'page_view', url: '/pricing', title: 'Pricing' });
   });
 

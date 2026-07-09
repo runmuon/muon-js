@@ -5,9 +5,9 @@
  * import * as muon from '@runmuon/node';
  *
  * muon.init('YOUR_PROJECT_ID', 'https://muon.run');
- * muon.track('signup_completed', { plan: 'pro' });
+ * muon.track('checkout_started', { cartValue: 12800, currency: 'USD' });
  * muon.pageView('/pricing', 'Pricing');
- * muon.identify('user_123');
+ * muon.identify('acct_9f4c2a');
  * await muon.shutdown();
  * ```
  *
