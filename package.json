@@ -1,0 +1,45 @@
+{
+  "name": "@runmuon/node",
+  "version": "0.1.0",
+  "description": "Official Muon analytics SDK for Node.js: events, page views, identify, error capture and a persistent offline queue.",
+  "keywords": ["analytics", "muon", "events", "telemetry"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/runmuon/muon-js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "pretest": "tsup",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vitest/coverage-v8": "^3.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
